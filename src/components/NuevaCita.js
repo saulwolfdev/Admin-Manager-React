@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-class NuevaCita extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  
-            cita:{
+import uuid from "uuid";
+const stateInicial = {
+    cita:{
                 mascota:"",
                 dueno:"",
                 dia:"",
@@ -11,8 +9,10 @@ class NuevaCita extends Component {
                 sintomas:"",
             },
             error:false
-        };
-    }
+}
+class NuevaCita extends Component {
+    state = {...stateInicial};
+
     handleChange=e=>{
         e.preventDefault()
         this.setState({
@@ -25,17 +25,24 @@ class NuevaCita extends Component {
     handleSubmit=e=>{
         e.preventDefault()
         const {mascota,dueno,dia,hora,sintomas}=this.state.cita;
-        if(mascota==""||dueno==""||dia==""||hora==""||sintomas==""){
+        if(mascota===""||dueno===""||dia===""||hora===""||sintomas===""){
             this.setState({
                 error:true
             })
             return
         }
-        this.props.createNewCite(this.state.cita)
+        const nuevaCita = {...this.state.cita};
+        nuevaCita.id = uuid();
+        
+        this.props.createNewCite(nuevaCita)
+        this.setState({...stateInicial})
+        
     }
     render() {
+        const {error}=this.state
         return (
             <div className="container">
+                {error?<div className="alert">los campos son obligatorios</div>:null}
                 <form  onSubmit={this.handleSubmit}>
                     <input 
                     onChange={this.handleChange}
