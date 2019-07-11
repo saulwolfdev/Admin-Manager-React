@@ -1,8 +1,19 @@
 import React from 'react';
+import Cita from './Cita';
 
-const ListaCitas=()=>{
+const ListaCitas=({citas})=>{
     return(
-        <h1>Lista Citas</h1>
+        <div className="card">
+            <h1>Lista Citas</h1>
+            <div className="cita">
+                {citas.map(cita => (
+                    <Cita 
+                        key={cita.id}
+                        cita={cita}
+                    /> 
+                ))}
+            </div>
+        </div>    
     )
 }
 export default ListaCitas;

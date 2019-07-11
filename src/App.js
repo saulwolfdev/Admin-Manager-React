@@ -23,7 +23,9 @@ class App extends Component {
 				createNewCite={this.createNewCite}/>
 			</div>
 			<div className="container">
-				<ListaCitas/>
+					<ListaCitas 
+						citas={this.state.citas}
+				/>
 			</div>
 			</div>
 		);
