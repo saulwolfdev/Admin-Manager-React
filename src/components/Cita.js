@@ -1,6 +1,6 @@
 import React from 'react'
  
-const Cita = ({cita}) => 
+const Cita = ({cita,deleteCite}) => 
     (
         <div>
             <h1>Cita</h1>
@@ -9,6 +9,9 @@ const Cita = ({cita}) =>
             <p>{cita.dia}</p>
             <p>{cita.hora}</p>
             <p>{cita.sintomas}</p>
+            <button
+            onClick={deleteCite}
+            >delete</button>
         </div>
     )
 

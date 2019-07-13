@@ -14,6 +14,9 @@ class App extends Component {
 		})
 		console.log(data)
 	}
+	deleteCite=id=>{
+		console.log(id)	
+	}
 	render() {
 		return (
 			<div className="container">
@@ -25,6 +28,7 @@ class App extends Component {
 			<div className="container">
 					<ListaCitas 
 						citas={this.state.citas}
+						deleteCite={this.deleteCite}
 				/>
 			</div>
 			</div>
