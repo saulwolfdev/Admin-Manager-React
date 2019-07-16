@@ -16,6 +16,14 @@ class App extends Component {
 	}
 	deleteCite=id=>{
 		console.log(id)	
+		console.log("le diste click=>")
+		const ActualCite=[...this.state.citas]
+		const citas=ActualCite.filter(cita=>cita.id!==id)
+		
+		this.setState({
+			citas
+		})
+		
 	}
 	render() {
 		return (

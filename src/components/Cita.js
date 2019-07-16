@@ -10,7 +10,7 @@ const Cita = ({cita,deleteCite}) =>
             <p>{cita.hora}</p>
             <p>{cita.sintomas}</p>
             <button
-            onClick={deleteCite}
+            onClick={()=>deleteCite(cita.id)}
             >delete</button>
         </div>
     )
