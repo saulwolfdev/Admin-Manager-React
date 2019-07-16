@@ -7,12 +7,37 @@ class App extends Component {
 		state={
 			citas:[]
 		}
+		
+	componentDidMount(){
+		const citasLocalStorage=localStorage.getItem("citas")
+		if(citasLocalStorage){
+			this.setState({
+				citas:JSON.parse(citasLocalStorage)
+			})
+		}
+	}
+	componentDidUpdate(){
+		localStorage.setItem("citas",JSON.stringify(this.state.citas))
+	}	
+		
+		
 	createNewCite=data=>{
 		const citas=[...this.state.citas,data]
 		this.setState({
 			citas
 		})
 		console.log(data)
+	}
+	deleteCite=id=>{
+		console.log(id)	
+		console.log("le diste click=>")
+		const ActualCite=[...this.state.citas]
+		const citas=ActualCite.filter(cita=>cita.id!==id)
+		
+		this.setState({
+			citas
+		})
+		
 	}
 	render() {
 		return (
@@ -23,7 +48,10 @@ class App extends Component {
 				createNewCite={this.createNewCite}/>
 			</div>
 			<div className="container">
-				<ListaCitas/>
+					<ListaCitas 
+						citas={this.state.citas}
+						deleteCite={this.deleteCite}
+				/>
 			</div>
 			</div>
 		);
